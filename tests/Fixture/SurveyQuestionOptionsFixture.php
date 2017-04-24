@@ -4,10 +4,10 @@ namespace CakephpSurvey\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * SurveyQuestionsFixture
+ * SurveyQuestionOptionsFixture
  *
  */
-class SurveyQuestionsFixture extends TestFixture
+class SurveyQuestionOptionsFixture extends TestFixture
 {
 
     /**
@@ -18,8 +18,8 @@ class SurveyQuestionsFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'title' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'description' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'survey_question_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'option' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'created_by' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -42,10 +42,10 @@ class SurveyQuestionsFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'title' => 'Lorem ipsum dolor sit amet',
-            'description' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-04-24 15:42:44',
-            'modified' => '2017-04-24 15:42:44',
+            'survey_question_id' => 1,
+            'option' => 'Lorem ipsum dolor sit amet',
+            'created' => '2017-04-24 15:25:55',
+            'modified' => '2017-04-24 15:25:55',
             'created_by' => 1,
             'modified_by' => 1
         ],

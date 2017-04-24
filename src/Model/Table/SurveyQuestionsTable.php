@@ -9,13 +9,16 @@ use Cake\Validation\Validator;
 /**
  * SurveyQuestions Model
  *
+ * @property \Cake\ORM\Association\HasMany $SurveyAndQuestions
+ * @property \Cake\ORM\Association\HasMany $SurveyQuestionOptions
+ *
  * @method \CakephpSurvey\Model\Entity\SurveyQuestion get($primaryKey, $options = [])
  * @method \CakephpSurvey\Model\Entity\SurveyQuestion newEntity($data = null, array $options = [])
  * @method \CakephpSurvey\Model\Entity\SurveyQuestion[] newEntities(array $data, array $options = [])
  * @method \CakephpSurvey\Model\Entity\SurveyQuestion|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \CakephpSurvey\Model\Entity\SurveyQuestion patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \CakephpSurvey\Model\Entity\SurveyQuestion[] patchEntities($entities, array $data, array $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestion findOrCreate($search, callable $callback = null)
+ * @method \CakephpSurvey\Model\Entity\SurveyQuestion findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -37,6 +40,15 @@ class SurveyQuestionsTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('SurveyAndQuestions', [
+            'foreignKey' => 'survey_question_id',
+            'className' => 'CakephpSurvey.SurveyAndQuestions'
+        ]);
+        $this->hasMany('SurveyQuestionOptions', [
+            'foreignKey' => 'survey_question_id',
+            'className' => 'CakephpSurvey.SurveyQuestionOptions'
+        ]);
     }
 
     /**
@@ -59,18 +71,14 @@ class SurveyQuestionsTable extends Table
             ->allowEmpty('description');
 
         $validator
-            ->dateTime('modifited')
-            ->allowEmpty('modifited');
-
-        $validator
             ->integer('created_by')
             ->requirePresence('created_by', 'create')
             ->notEmpty('created_by');
 
         $validator
-            ->integer('modifited_by')
-            ->requirePresence('modifited_by', 'create')
-            ->notEmpty('modifited_by');
+            ->integer('modified_by')
+            ->requirePresence('modified_by', 'create')
+            ->notEmpty('modified_by');
 
         return $validator;
     }

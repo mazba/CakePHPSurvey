@@ -4,20 +4,21 @@ namespace CakephpSurvey\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * SurveyQuestion Entity
+ * Survey Entity.
  *
  * @property int $id
  * @property string $title
  * @property string $description
+ * @property string $banner
+ * @property string $type
+ * @property \Cake\I18n\Time $start
+ * @property \Cake\I18n\Time $end
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  * @property int $created_by
  * @property int $modified_by
- *
- * @property \CakephpSurvey\Model\Entity\Survey $survey
- * @property \CakephpSurvey\Model\Entity\SurveyQuestionOption[] $survey_question_options
  */
-class SurveyQuestion extends Entity
+class Survey extends Entity
 {
 
     /**
@@ -31,6 +32,6 @@ class SurveyQuestion extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false
+        'id' => false,
     ];
 }

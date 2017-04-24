@@ -3,20 +3,20 @@ namespace CakephpSurvey\Test\TestCase\Model\Table;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use CakephpSurvey\Model\Table\SurveyQuestionsTable;
+use CakephpSurvey\Model\Table\SurveyQuestionOptionsTable;
 
 /**
- * CakephpSurvey\Model\Table\SurveyQuestionsTable Test Case
+ * CakephpSurvey\Model\Table\SurveyQuestionOptionsTable Test Case
  */
-class SurveyQuestionsTableTest extends TestCase
+class SurveyQuestionOptionsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \CakephpSurvey\Model\Table\SurveyQuestionsTable
+     * @var \CakephpSurvey\Model\Table\SurveyQuestionOptionsTable
      */
-    public $SurveyQuestions;
+    public $SurveyQuestionOptions;
 
     /**
      * Fixtures
@@ -24,9 +24,9 @@ class SurveyQuestionsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'plugin.cakephp_survey.survey_question_options',
         'plugin.cakephp_survey.survey_questions',
-        'plugin.cakephp_survey.surveys',
-        'plugin.cakephp_survey.survey_question_options'
+        'plugin.cakephp_survey.surveys'
     ];
 
     /**
@@ -37,8 +37,8 @@ class SurveyQuestionsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('SurveyQuestions') ? [] : ['className' => 'CakephpSurvey\Model\Table\SurveyQuestionsTable'];
-        $this->SurveyQuestions = TableRegistry::get('SurveyQuestions', $config);
+        $config = TableRegistry::exists('SurveyQuestionOptions') ? [] : ['className' => 'CakephpSurvey\Model\Table\SurveyQuestionOptionsTable'];
+        $this->SurveyQuestionOptions = TableRegistry::get('SurveyQuestionOptions', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class SurveyQuestionsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->SurveyQuestions);
+        unset($this->SurveyQuestionOptions);
 
         parent::tearDown();
     }

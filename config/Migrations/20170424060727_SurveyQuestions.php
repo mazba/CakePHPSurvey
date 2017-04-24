@@ -1,8 +1,15 @@
 <?php
 use Migrations\AbstractMigration;
 
-class Initial extends AbstractMigration
+class SurveyQuestions extends AbstractMigration
 {
+    /**
+     * Change Method.
+     *
+     * More information on this method is available here:
+     * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+     * @return void
+     */
     public function up()
     {
 
@@ -22,7 +29,7 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('modifited', 'datetime', [
+            ->addColumn('modified', 'datetime', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -32,7 +39,7 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('modifited_by', 'integer', [
+            ->addColumn('modified_by', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
