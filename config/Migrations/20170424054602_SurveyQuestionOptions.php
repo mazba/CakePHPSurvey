@@ -18,7 +18,7 @@ class SurveyQuestionOptions extends AbstractMigration
                 'limit'=>11,
                 'null' => false,
             ])
-            ->addColumn('option', 'string', [
+            ->addColumn('title', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => false,

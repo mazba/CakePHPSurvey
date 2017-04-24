@@ -35,7 +35,7 @@ class SurveyQuestionOptionsTable extends Table
         parent::initialize($config);
 
         $this->table('survey_question_options');
-        $this->displayField('id');
+        $this->displayField('title');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -60,8 +60,8 @@ class SurveyQuestionOptionsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('option', 'create')
-            ->notEmpty('option');
+            ->requirePresence('title', 'create')
+            ->notEmpty('title');
 
         return $validator;
     }

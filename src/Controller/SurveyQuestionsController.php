@@ -69,6 +69,7 @@ class SurveyQuestionsController extends AppController
             $data = $this->request->data;
             $data['created_by'] = $user['id'];
             $surveyQuestion = $this->SurveyQuestions->patchEntity($surveyQuestion, $data,['association'=>['SurveyQuestionOptions']]);
+//            pr($surveyQuestion);die;
             if ($this->SurveyQuestions->save($surveyQuestion,['association'=>['SurveyQuestionOptions']])) {
                 $this->Flash->success('The survey question has been saved.');
                 return $this->redirect(['action' => 'index']);
@@ -76,6 +77,7 @@ class SurveyQuestionsController extends AppController
                 $this->Flash->error('The survey question could not be saved. Please, try again.');
             }
         }
+        //"INSERT INTO survey_question_options (survey_question_id, option, created, modified) VALUES (:c0, :c1, :c2, :c3)"
         $this->set(compact('surveyQuestion'));
         $this->set('_serialize', ['surveyQuestion']);
     }

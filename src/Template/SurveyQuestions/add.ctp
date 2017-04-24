@@ -50,7 +50,7 @@ use Cake\Core\Configure;
                             </tr>
                             <tr class="option">
                                 <td class="increment"><?php echo __(1); ?></td>
-                                <td><?php echo $this->Form->input("survey_question_options.0.option", ['type' => 'text', 'class' => 'form-control','label' => false,'required' =>'required']); ?></td>
+                                <td><?php echo $this->Form->input("survey_question_options.0.title", ['type' => 'text', 'class' => 'form-control','label' => false,'required' =>'required']); ?></td>
                                 <td>
                                     <span class="remove-row btn btn-sm btn-circle btn-danger"><i class="fa fa-times-circle"></i></span>
                                 </td>
