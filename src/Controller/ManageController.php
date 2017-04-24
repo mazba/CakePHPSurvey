@@ -57,58 +57,14 @@ class ManageController extends AppController
     public function add()
     {
         $survey = $this->Survey->newEntity();
+        $this->loadModel('SurveyQuestions');
+        $questions = $this->SurveyQuestions->find('list');
         $this->viewBuilder()->layout('default');
         if ($this->request->is('post')) {
             $input = $this->request->data;
-            echo '<pre>';print_r($input);die;
+
         }
-        $this->set(compact('survey'));
-        $this->set('_serialize', ['survey']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Manage id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $manage = $this->Manage->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $manage = $this->Manage->patchEntity($manage, $this->request->data);
-            if ($this->Manage->save($manage)) {
-                $this->Flash->success(__('The manage has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The manage could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('manage'));
-        $this->set('_serialize', ['manage']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Manage id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $manage = $this->Manage->get($id);
-        if ($this->Manage->delete($manage)) {
-            $this->Flash->success(__('The manage has been deleted.'));
-        } else {
-            $this->Flash->error(__('The manage could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
+        $this->set(compact('survey','questions'));
+        $this->set('_serialize', ['survey','questions']);
     }
 }
