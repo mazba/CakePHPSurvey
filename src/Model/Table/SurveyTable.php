@@ -65,11 +65,7 @@ class SurveyTable extends Table
             ->add('end', 'valid', ['rule' => 'dateTime'])
             ->requirePresence('end', 'create')
             ->notEmpty('end');
-            
-        $validator
-            ->add('modified_by', 'valid', ['rule' => 'integer'])
-            ->requirePresence('modified_by', 'create')
-            ->notEmpty('modified_by');
+
 
         return $validator;
     }

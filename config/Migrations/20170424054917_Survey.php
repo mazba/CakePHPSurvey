@@ -61,7 +61,7 @@ class Survey extends AbstractMigration
             ->addColumn('modified_by', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->create();
     }

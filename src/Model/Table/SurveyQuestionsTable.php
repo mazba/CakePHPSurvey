@@ -75,10 +75,6 @@ class SurveyQuestionsTable extends Table
             ->requirePresence('created_by', 'create')
             ->notEmpty('created_by');
 
-        $validator
-            ->integer('modified_by')
-            ->requirePresence('modified_by', 'create')
-            ->notEmpty('modified_by');
 
         return $validator;
     }

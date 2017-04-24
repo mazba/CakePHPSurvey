@@ -7,21 +7,20 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * SurveyQuestionOptions Model
+ * SurveyAndQuestions Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Surveys
  * @property \Cake\ORM\Association\BelongsTo $SurveyQuestions
  *
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption get($primaryKey, $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption newEntity($data = null, array $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption[] newEntities(array $data, array $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption[] patchEntities($entities, array $data, array $options = [])
- * @method \CakephpSurvey\Model\Entity\SurveyQuestionOption findOrCreate($search, callable $callback = null, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion get($primaryKey, $options = [])
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion newEntity($data = null, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion[] newEntities(array $data, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion[] patchEntities($entities, array $data, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\SurveyAndQuestion findOrCreate($search, callable $callback = null, $options = [])
  */
-class SurveyQuestionOptionsTable extends Table
+class SurveyAndQuestionsTable extends Table
 {
 
     /**
@@ -34,12 +33,15 @@ class SurveyQuestionOptionsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('survey_question_options');
+        $this->table('survey_and_questions');
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->addBehavior('Timestamp');
-
+        $this->belongsTo('Survey', [
+            'foreignKey' => 'survey_id',
+            'joinType' => 'INNER',
+            'className' => 'CakephpSurvey.Survey'
+        ]);
         $this->belongsTo('SurveyQuestions', [
             'foreignKey' => 'survey_question_id',
             'joinType' => 'INNER',
@@ -59,10 +61,6 @@ class SurveyQuestionOptionsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('option', 'create')
-            ->notEmpty('option');
-
         return $validator;
     }
 
@@ -75,6 +73,7 @@ class SurveyQuestionOptionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->existsIn(['survey_id'], 'Survey'));
         $rules->add($rules->existsIn(['survey_question_id'], 'SurveyQuestions'));
 
         return $rules;

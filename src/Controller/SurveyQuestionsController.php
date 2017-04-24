@@ -66,11 +66,10 @@ class SurveyQuestionsController extends AppController
         $time = time();
         $surveyQuestion = $this->SurveyQuestions->newEntity();
         if ($this->request->is('post')) {
-
             $data = $this->request->data;
-            $data['create_by'] = $user['id'];
-            $surveyQuestion = $this->SurveyQuestions->patchEntity($surveyQuestion, $data);
-            if ($this->SurveyQuestions->save($surveyQuestion)) {
+            $data['created_by'] = $user['id'];
+            $surveyQuestion = $this->SurveyQuestions->patchEntity($surveyQuestion, $data,['association'=>['SurveyQuestionOptions']]);
+            if ($this->SurveyQuestions->save($surveyQuestion,['association'=>['SurveyQuestionOptions']])) {
                 $this->Flash->success('The survey question has been saved.');
                 return $this->redirect(['action' => 'index']);
             } else {

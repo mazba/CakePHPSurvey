@@ -4,20 +4,16 @@ namespace CakephpSurvey\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * SurveyQuestion Entity
+ * SurveyAndQuestion Entity
  *
  * @property int $id
- * @property string $title
- * @property string $description
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
- * @property int $created_by
- * @property int $modified_by
+ * @property int $survey_id
+ * @property int $survey_question_id
  *
- * @property \CakephpSurvey\Model\Entity\SurveyAndQuestion[] $survey_and_questions
- * @property \CakephpSurvey\Model\Entity\SurveyQuestionOption[] $survey_question_options
+ * @property \CakephpSurvey\Model\Entity\Survey $survey
+ * @property \CakephpSurvey\Model\Entity\SurveyQuestion $survey_question
  */
-class SurveyQuestion extends Entity
+class SurveyAndQuestion extends Entity
 {
 
     /**

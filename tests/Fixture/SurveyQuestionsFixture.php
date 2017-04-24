@@ -44,8 +44,8 @@ class SurveyQuestionsFixture extends TestFixture
             'id' => 1,
             'title' => 'Lorem ipsum dolor sit amet',
             'description' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-04-24 15:42:44',
-            'modified' => '2017-04-24 15:42:44',
+            'created' => '2017-04-24 15:45:14',
+            'modified' => '2017-04-24 15:45:14',
             'created_by' => 1,
             'modified_by' => 1
         ],

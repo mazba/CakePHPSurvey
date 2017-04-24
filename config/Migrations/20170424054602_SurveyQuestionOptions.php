@@ -33,16 +33,6 @@ class SurveyQuestionOptions extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('created_by', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('modified_by', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
             ->create();
     }
     public function down()
