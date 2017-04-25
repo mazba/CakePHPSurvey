@@ -38,7 +38,7 @@
                                 <td class="actions">
                                     <?php
                                     echo $this->Html->link(__('View'), ['action' => 'view', $survey_en->id], ['class' => 'btn btn-sm btn-info']);
-                                    echo $this->Html->link(__('Edit'), ['action' => 'edit', $survey_en->id], ['class' => 'btn btn-sm btn-warning']);
+//                                    echo $this->Html->link(__('Edit'), ['action' => 'edit', $survey_en->id], ['class' => 'btn btn-sm btn-warning']);
 //                                    echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $survey_en->id], ['class' => 'btn btn-sm btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $survey->id)]);
 
                                     ?>

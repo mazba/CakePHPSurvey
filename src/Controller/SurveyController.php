@@ -1,14 +1,15 @@
 <?php
 namespace CakephpSurvey\Controller;
 
+use Cake\Chronos\Chronos;
 use CakephpSurvey\Controller\AppController;
 
 /**
  * Manage Controller
  *
- * @property \CakephpSurvey\Model\Table\ManageTable $Manage
+ * @property \CakephpSurvey\Model\Table\SurveyTable $Manage
  */
-class ManageController extends AppController
+class SurveyController extends AppController
 {
     public function initialize()
     {
@@ -16,7 +17,7 @@ class ManageController extends AppController
         $user = $this->Auth->user();
         if ($user['user_type'] == 'sys'){
             $this->Auth->allow();
-            $this->loadModel('Survey');
+//            $this->loadModel('Survey');
         }
     }
 
@@ -42,10 +43,11 @@ class ManageController extends AppController
      */
     public function view($id = null)
     {
-        $manage = $this->Manage->get($id, [
-            'contain' => []
+        $survey = $this->Survey->get($id, [
+            'contain' => ['SurveyAndQuestions','SurveyAndQuestions.SurveyQuestions']
         ]);
-        $this->set('manage', $manage);
+//        echo '<pre>';print_r($survey);die;
+        $this->set('survey', $survey);
         $this->set('_serialize', ['manage']);
     }
 
@@ -62,7 +64,18 @@ class ManageController extends AppController
         $this->viewBuilder()->layout('default');
         if ($this->request->is('post')) {
             $input = $this->request->data;
-
+            $input['start']=new Chronos($input['start']);
+            $input['end']=new Chronos($input['end']);
+            $input['created_by'] = $this->Auth->user('id');
+            $this->loadModel('Survey');
+            $surveyQuestion = $this->Survey->patchEntity($survey, $input,['associated'=>['SurveyAndQuestions']]);
+            $saveRes = $this->Survey->save($surveyQuestion,['associated'=>['SurveyAndQuestions']]);
+            if($saveRes){
+                $this->Flash->success('The Survey has been saved.');
+                return $this->redirect(['action' => 'index']);
+            }
+            else
+                $this->Flash->error('The Survey could not be saved.');
         }
         $this->set(compact('survey','questions'));
         $this->set('_serialize', ['survey','questions']);

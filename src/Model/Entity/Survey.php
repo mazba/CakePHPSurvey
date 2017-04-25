@@ -4,7 +4,7 @@ namespace CakephpSurvey\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Survey Entity.
+ * Survey Entity
  *
  * @property int $id
  * @property string $title
@@ -17,6 +17,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $modified
  * @property int $created_by
  * @property int $modified_by
+ *
+ * @property \CakephpSurvey\Model\Entity\SurveyAndQuestion[] $survey_and_questions
  */
 class Survey extends Entity
 {
@@ -32,6 +34,6 @@ class Survey extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'id' => false
     ];
 }

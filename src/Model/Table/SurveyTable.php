@@ -5,10 +5,21 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use CakephpSurvey\Model\Entity\Survey;
 
 /**
  * Survey Model
+ *
+ * @property \Cake\ORM\Association\HasMany $SurveyAndQuestions
+ *
+ * @method \CakephpSurvey\Model\Entity\Survey get($primaryKey, $options = [])
+ * @method \CakephpSurvey\Model\Entity\Survey newEntity($data = null, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\Survey[] newEntities(array $data, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\Survey|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \CakephpSurvey\Model\Entity\Survey patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\Survey[] patchEntities($entities, array $data, array $options = [])
+ * @method \CakephpSurvey\Model\Entity\Survey findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class SurveyTable extends Table
 {
@@ -21,13 +32,17 @@ class SurveyTable extends Table
      */
     public function initialize(array $config)
     {
+        parent::initialize($config);
+
         $this->table('survey');
         $this->displayField('title');
         $this->primaryKey('id');
+
         $this->addBehavior('Timestamp');
-        $this->hasMany('SurveyQuestions', [
+
+        $this->hasMany('SurveyAndQuestions', [
             'foreignKey' => 'survey_id',
-            'className' => 'CakephpSurvey.SurveyQuestions'
+            'className' => 'CakephpSurvey.SurveyAndQuestions'
         ]);
     }
 
@@ -40,32 +55,40 @@ class SurveyTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->add('id', 'valid', ['rule' => 'integer'])
+            ->integer('id')
             ->allowEmpty('id', 'create');
-            
+
         $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
-            
+
         $validator
             ->allowEmpty('description');
-            
+
         $validator
             ->allowEmpty('banner');
-            
+
         $validator
             ->allowEmpty('type');
-            
+
         $validator
-            ->add('start', 'valid', ['rule' => 'dateTime'])
+            ->dateTime('start')
             ->requirePresence('start', 'create')
             ->notEmpty('start');
-            
+
         $validator
-            ->add('end', 'valid', ['rule' => 'dateTime'])
+            ->dateTime('end')
             ->requirePresence('end', 'create')
             ->notEmpty('end');
 
+        $validator
+            ->integer('created_by')
+            ->requirePresence('created_by', 'create')
+            ->notEmpty('created_by');
+
+        $validator
+            ->integer('modified_by')
+            ->allowEmpty('modified_by');
 
         return $validator;
     }

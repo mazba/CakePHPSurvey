@@ -25,7 +25,9 @@ class SurveyTableTest extends TestCase
      */
     public $fixtures = [
         'plugin.cakephp_survey.survey',
-        'plugin.cakephp_survey.survey_questions'
+        'plugin.cakephp_survey.survey_and_questions',
+        'plugin.cakephp_survey.survey_questions',
+        'plugin.cakephp_survey.survey_question_options'
     ];
 
     /**

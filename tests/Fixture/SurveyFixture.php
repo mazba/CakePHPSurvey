@@ -34,7 +34,7 @@ class SurveyFixture extends TestFixture
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'created_by' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'modified_by' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'modified_by' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -57,10 +57,10 @@ class SurveyFixture extends TestFixture
             'description' => 'Lorem ipsum dolor sit amet',
             'banner' => 'Lorem ipsum dolor sit amet',
             'type' => 'Lorem ipsum dolor sit amet',
-            'start' => '2017-04-24 12:21:53',
-            'end' => '2017-04-24 12:21:53',
-            'created' => '2017-04-24 12:21:53',
-            'modified' => '2017-04-24 12:21:53',
+            'start' => '2017-04-25 13:46:49',
+            'end' => '2017-04-25 13:46:49',
+            'created' => '2017-04-25 13:46:49',
+            'modified' => '2017-04-25 13:46:49',
             'created_by' => 1,
             'modified_by' => 1
         ],
